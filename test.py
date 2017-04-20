@@ -19,18 +19,28 @@ class Flight:
     def __str__(self):
         return (
             "Destination: {}\t Distance: {}\tPrice: {}".format(
-            self.destination, self.distance, self.price) )
+            self.destination.name,  self.distance, self.price) )
 
 class Airline:
     def __init__(self):
         self.cities = []
 
     def addFlight(self, origin, destination, distance, price):
+        origin_ptr = None;  destination_ptr = None
         for city in self.cities:
-            #this means the origin is valid
             if city.name == origin:
-                city.addFlight( destination, distance, price)
-                return
+                origin_ptr = city
 
-        self.cities.append( City(origin) )
-        self.cities[-1].addFlight( destination, distance, price)
+            if city.name == destination:
+                destination_ptr = city
+
+        if origin_ptr == None:
+            origin_ptr = City( origin )
+            cities.append( origin_ptr )
+
+        if destination_ptr == None:
+            destination_ptr = City( destination )
+            cities.append( City(destination_ptr) )
+
+        #now both the destination and origin are created
+        origin_ptr.addFlight( destination_ptr, distance, price )
