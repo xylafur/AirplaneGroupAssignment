@@ -1,11 +1,18 @@
+import pdb
 class City:
     def __init__(self, name):
         self.outgoingFlights = []
         self.name = name
 
     def __str__(self):
-        return "{}   Outgoing Flights: {}".format(
-                self.name, [ flight.__str__() for flight in self.outgoingFlights ] )
+        return self.name
+
+    def printIt(self):
+
+        print( "\n{} outgoing flights: ".format(self.name ) )
+        for flight in self.outgoingFlights:
+            print( flight)
+    
     def addFlight(self, destination, distance, price):
         temp = Flight( destination, distance, price)
         self.outgoingFlights.append( temp )
@@ -21,24 +28,19 @@ class Flight:
 
     def __str__(self):
         return (
-            "Destination: {}   Distance: {}   Price: {}".format(
+            "\tDestination: {}   Distance: {}   Price: {}".format(
             self.destination.name,  self.distance, self.price) )
     
 class Airline:
     def __init__(self):
         self.cities = []
     
-    def __str__(self):
-        ret = "Airline Object   Cities: {}".format(
-                [city.__str__() for city in self.cities ])
-        return ret
-
-    def print(self):
+    def printIt(self):
         print("*"*23)
         print("*Airline with cities: *")
         print("*"*23)
         for city in self.cities:
-            print("*{}".format(city))
+            city.printIt()
         print("*"*20)
 
     def addFlight(self, origin, destination, distance, price):
@@ -50,20 +52,43 @@ class Airline:
             if city.name == destination:
                 destination_ptr = city
 
+
         if origin_ptr == None:
+            print("didnt find origin: {}".format(origin))
             origin_ptr = City( origin )
             self.cities.append( origin_ptr )
 
         if destination_ptr == None:
+            print("didnt find destination: {}".format(destination))
             destination_ptr = City( destination )
             self.cities.append( City(destination_ptr) )
-
         #now both the destination and origin are created
         origin_ptr.addFlight( destination_ptr, distance, price )
 
+class Runner:
+    #class to open a file and create airline object with cities and flights and
+    #that good stuff
 
-cosc = Airline()
+    def __init__(self, inFile):
+        self.airline = Airline()
+        self.file = inFile
 
-cosc.addFlight("Houston", "Las Vegas", 500, 200)
+    def run(self):
+        def createEntry(entry):
+            entry = entry.split()
+            self.airline.addFlight(entry[0], 
+                    entry[1], int(entry[2]), int(entry[3]) )
 
-cosc.print()
+        for line in open(self.file):
+            createEntry( line )
+        pdb.set_trace()
+        self.airline.printIt()
+
+
+runner = Runner( "flights.txt" )
+runner.run()
+
+
+
+
+

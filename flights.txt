@@ -1,0 +1,5 @@
+Houston Dallas 200 50
+Houston New_York 1400 300
+Houston Las_Vegas 400 100
+Las_Vegas Houston 400 100
+Seattle New_York 1500 400
