@@ -54,14 +54,12 @@ class Airline:
 
 
         if origin_ptr == None:
-            print("didnt find origin: {}".format(origin))
             origin_ptr = City( origin )
             self.cities.append( origin_ptr )
 
         if destination_ptr == None:
-            print("didnt find destination: {}".format(destination))
             destination_ptr = City( destination )
-            self.cities.append( City(destination_ptr) )
+            self.cities.append( destination_ptr )
         #now both the destination and origin are created
         origin_ptr.addFlight( destination_ptr, distance, price )
 
@@ -81,7 +79,6 @@ class Runner:
 
         for line in open(self.file):
             createEntry( line )
-        pdb.set_trace()
         self.airline.printIt()
 
 
