@@ -7,3 +7,8 @@
  *      connect cities by every way they can go
  *
  */
+#include "airline.h"
+
+int main(){
+    return 0;
+}
