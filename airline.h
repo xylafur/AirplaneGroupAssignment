@@ -22,17 +22,18 @@ public:
     City(std::string name){
         this->name = name;
     }
-    void addFlight(std::string destination, int distance, int price){
+    void addFlight(City* destination, int distance, int price){
         Flight temp;
-        temp.destination = destination;
+        temp.destination = destination->getName();
+        temp.city = destination;
         temp.distance = distance;
         temp.price = price;
         outgoingFlights.push_back(temp);
     }
     void print(){
-        std::cout<<this->name<<" with outgoing flights:"<<std::endl;
+        std::cout<<"\t"<<this->name<<" with outgoing flights:"<<std::endl;
         for( int i = 0; i < this->outgoingFlights.size(); i++){
-            std::cout<<"\tDestination: "<<outgoingFlights[i].destination<<
+            std::cout<<"\t\tDestination: "<<outgoingFlights[i].destination<<
                 "\tDistance: "<<outgoingFlights[i].distance<<"\tPrice: "
                 <<outgoingFlights[i].price<<std::endl;
         }
@@ -72,7 +73,13 @@ public:
         //At this point both origin and destinatoin ptr are created and exist in
         //the list of cities.  SO now we jsut add the destination as a outgoing
         //flight for origin.
-
+        origin_ptr->addFlight( destination_ptr, distance, price);
+    }
+    void print(){
+        std::cout<<"Airline object with cities:\n";
+        for( int i = 0; i < cities.size(); i++){
+            cities[i]->print();
+        }
     }
 };
 

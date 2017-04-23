@@ -10,5 +10,9 @@
 #include "airline.h"
 
 int main(){
+    std::string str = "Houston Dallas 100 100";
+    Airline myAirline;
+    myAirline.addFlight("Houston", "Dallas", 100, 100);
+    myAirline.print();
     return 0;
 }
