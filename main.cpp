@@ -63,24 +63,32 @@ public:
         temp = readFileToVector(str);
         fillAirline(airline, temp);
     }
+    int toInt(std::string str1){
+        int ret = 0;
+        for( int i = 0; i < str1.length(); i++){
+            if(str1.at(i)==' ')
+                continue;
+            ret *= 10;
+            ret += int((str1.at(i) - '0'));
+        }
+        return ret;
+    }
     void fillAirline(Airline &airline, std::vector<std::string> vec){
         for(int i = 0; i < vec.size(); i++){
             std::vector<std::string> temp;
             temp = this->splitBy( vec[i], ' ');
-            std::cout<<temp[0]<<temp[1]<<temp[2]<<temp[3]<<std::endl;
+            airline.addFlight(temp[0], temp[1], toInt(temp[2]),
+                    toInt(temp[3]));
         }
     }
 };
 
 int main(){
     UtilClass helper;
-
-    std::string str = "Houston Dallas 100 100";
     Airline myAirline;
-    
     std::string st = "flights.txt";
+    
     helper.fillAirline(myAirline, st);
-    myAirline.addFlight("Houston", "Dallas", 100, 100);
     myAirline.print();
     return 0;
 }
