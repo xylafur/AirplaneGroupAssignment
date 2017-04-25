@@ -29,6 +29,9 @@ public:
         ret.push_back( str.substr(lastPos));
         return ret;
     }
+    std::string trim(std::string str){
+        
+    }
     std::vector<std::string> splitBy(std::string str, char split){
         int lastPos = 0;
         std::vector<std::string> ret;
@@ -36,7 +39,7 @@ public:
         for( int i = 0; i < str.length(); i++){
             if(str.at(i) == split ){
                 std::string temp = str.substr(lastPos, i-lastPos);
-                lastPos = i;
+                lastPos = i+1;
                 ret.push_back(temp);
             }
         }

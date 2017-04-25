@@ -38,6 +38,7 @@ public:
         origin_ptr->addFlight( destination_ptr, distance, price);
     }
     void print(){
+        std::cout<<"Num cities in airline list: "<<cities.size()<<std::endl;
         std::cout<<"Airline object with cities:\n";
         for( int i = 0; i < cities.size(); i++){
             cities[i]->print();
