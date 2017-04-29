@@ -9,6 +9,19 @@ class Airline{
 private:
     std::vector<City *> cities;
 
+    int minDist( City * origin, City * destination){
+        std::vector<Flight> flights = origin->getFlights();
+        if( flights.size() == 0 )
+            return -1;
+        for( int i = 0; i < flights.size(); i++){
+            if( flights[i].city == destination )
+                return flights[i].distance;
+        }
+        for( int i = 0; i < flights.size(); i++){
+            return flights[i].distance + minDist( flights[i].city, destination );
+        }
+    }
+
 public:
     Airline(){}
     void addFlight(std::string origin, std::string destination,
@@ -43,6 +56,17 @@ public:
         for( int i = 0; i < cities.size(); i++){
             cities[i]->print();
         }
+    }
+    int calculateMinimumDistance( std::string origin, std::string destination){   
+        //find origin and destination
+        City * origin_ptr = NULL, *destination_ptr = NULL;
+        for( int i = 0; i < cities.size(); i++){
+            if( origin.compare( cities[i]->getName() ) == 0 )
+                origin_ptr = cities[i];
+            if( destination.compare( cities[i]->getName() ) == 0)
+                destination_ptr = cities[i];
+        }
+        return minDist( origin_ptr, destination_ptr );
     }
 };
 

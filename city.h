@@ -45,6 +45,9 @@ public:
     std::string getName(){
         return this->name;
     }   
+    std::vector<Flight> getFlights(){
+        return this->outgoingFlights;
+    }
 };
 
 

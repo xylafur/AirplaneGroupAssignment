@@ -93,5 +93,7 @@ int main(){
     
     helper.fillAirline(myAirline, st);
     myAirline.print();
+    std::cout << "shortest dist from Houston to NY: "<<
+        myAirline.calculateMinimumDistance("Houston", "New_York");
     return 0;
 }

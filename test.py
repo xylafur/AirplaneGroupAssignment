@@ -1,8 +1,16 @@
 import pdb
 class City:
+    """
+        Each city has a list of outgoing flights represented by a flight object
+        (in the c++ version of the code flight is a struct)
+        We can have a dict that contains every possible endpoint from this city
+        as a starting point as the set of keys.  The corisponding vill be the
+        shortest path (or maybe the cheapest flight rather).
+    """
     def __init__(self, name):
         self.outgoingFlights = []
         self.name = name
+        self.shortestPaths = {}
 
     def __str__(self):
         return self.name
@@ -16,6 +24,11 @@ class City:
     def addFlight(self, destination, distance, price):
         temp = Flight( destination, distance, price)
         self.outgoingFlights.append( temp )
+
+    def findShortestPath(self, currentDistance, city):
+        #recursive function that will find if there are any shorter paths for a
+        #all cities.  Will also map all posible destinations
+        pass
 
     def printFlights(self):
         pass

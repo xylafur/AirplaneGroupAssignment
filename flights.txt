@@ -3,3 +3,4 @@ Houston New_York 1400 300
 Houston Las_Vegas 400 100
 Las_Vegas Houston 400 100
 Seattle New_York 1500 400
+Houston Seatle 2000 500
